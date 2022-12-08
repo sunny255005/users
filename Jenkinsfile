@@ -13,7 +13,7 @@ pipeline{
 
     agent any
     tools { 
-       gradle'gradle7' 
+        maven{maven3}
        
     } 
    
@@ -64,7 +64,7 @@ pipeline{
      steps {
          echo "Hello,unit_test continue...!"
             script {
-                sh './gradlew test'
+                sh 'mvn test'
                 echo 'testing in progess...'
                  jacoco()
             }
@@ -108,7 +108,7 @@ pipeline{
                  withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
 
-                     sh './gradlew sonarqube \
+                     sh 'mvn sonarqube \
   -Dsonar.projectKey=test \
                      -Dsonar.projectName=${GIT_REPO_NAME} \
   -Dsonar.host.url=http://localhost:9000 \
