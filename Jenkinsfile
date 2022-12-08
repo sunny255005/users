@@ -107,12 +107,12 @@ pipeline{
                 sh 'echo url'
                  withSonarQubeEnv(installationName: 'sonarqube-server', credentialsId: 'sonarqube-secret-token') {
                     
-
-                     sh 'mvn sonarqube \
-  -Dsonar.projectKey=test \
-                     -Dsonar.projectName=${GIT_REPO_NAME} \
-  -Dsonar.host.url=http://localhost:9000 \
-'
+sh 'mvn clean verify sonar:sonar -Dsonar.login=sqa_31b778babcf750f12a26f1255eb988a5cc7e5546 '
+//                      sh 'mvn sonarqube \
+//   -Dsonar.projectKey=test \
+//                      -Dsonar.projectName=${GIT_REPO_NAME} \
+//   -Dsonar.host.url=http://localhost:9000 \
+// '
 
                     
                 }
